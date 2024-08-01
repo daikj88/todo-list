@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>TODO List
+      <a href="{% url "todoapp:task-create" %}" class="btn btn-primary link-to-page">
+      Add task
+      </a>
+    </h1>
+    <div class="ml">
+         {% for task in tasks %}
+  
+      <div class="task-container">
+        <strong>{{ task.content }}</strong>
+        {% if task.is_completed %}
+          <span class="text-success">Done</span>
+          <form action="{% url 'todoapp:task-status' pk=task.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button class="btn btn-secondary float-right" type="submit">Undo</button>
+          </form>
+        {% else %}
+          <span class="text-danger">Not done</span>
+          <form action="{% url 'todoapp:task-status' pk=task.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button class="btn btn-success float-right" type="submit">Complete</button>
+          </form>
+        {% endif %}
+      </div>
+      <p><strong>Created:</strong> {{ task.datetime }} </p>
+      <div class="text-muted"><strong>Tags:</strong>
+        {% for tag in task.tags.all %}
+        <span>{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
+        <a href="{% url 'todoapp:task-update' pk=task.id %}">Update</a>
+        <a href="{% url 'todoapp:task-delete' pk=task.id %}">Delete</a>
+        {% endfor %}
+      </div>
+      <hr>
+      {% empty %}
+      <p>No TODO List!</p>
+      {% endfor %}
+    </div>
+{% endblock content %}
