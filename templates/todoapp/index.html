@@ -6,5 +6,20 @@
         <li><strong>Tasks:</strong> {{ num_tasks }}</li>
         <li><strong>Tags:</strong> {{ num_tags }}</li>
     </ul>
+    <div class="ml">
+       {% for task in tasks %}
+
+          <p><strong> {{ task.content }} </strong></p>
+          <p><strong>Created:</strong> {{ task.published_date }} </p>
+          <div class="text-muted"><strong>Tags:</strong>
+              {% for tag in task.tags.all %}
+              <span>{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
+              {% endfor %}
+          </div>
+          <hr>
+       {% empty %}
+          <p>No TODO List!</p>
+       {% endfor %}
+    </div>  
 
 {% endblock content %}
