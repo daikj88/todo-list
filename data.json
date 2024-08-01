@@ -1,0 +1,56 @@
+[
+  {
+    "model": "todoapp.tag",
+    "pk": 1,
+    "fields": {
+      "name": "home"
+    }
+  },
+  {
+    "model": "todoapp.tag",
+    "pk": 2,
+    "fields": {
+      "name": "work"
+    }
+  },
+  {
+    "model": "todoapp.tag",
+    "pk": 3,
+    "fields": {
+      "name": "shop"
+    }
+  },
+  {
+    "model": "todoapp.task",
+    "pk": 1,
+    "fields": {
+      "content": "Complete project",
+      "datetime": "2024-08-01T10:00:00Z",
+      "deadline": "2024-08-10T17:00:00Z",
+      "is_done": false,
+      "tags": [2]
+    }
+  },
+  {
+    "model": "todoapp.task",
+    "pk": 2,
+    "fields": {
+      "content": "Clean windows",
+      "datetime": "2024-08-02T12:00:00Z",
+      "deadline": "2024-08-05T14:00:00Z",
+      "is_done": false,
+      "tags": [1]
+    }
+  },
+  {
+    "model": "todoapp.task",
+    "pk": 3,
+    "fields": {
+      "content": "Buy 3 carrots and 1 pineapple",
+      "datetime": "2024-08-03T09:00:00Z",
+      "deadline": "2024-08-04T18:00:00Z",
+      "is_done": false,
+      "tags": [3]
+    }
+  }
+]
