@@ -9,8 +9,23 @@
     <div class="ml">
          {% for task in tasks %}
   
-      <p><strong> {{ task.content }} </strong></p>
-      <p><strong>Created:</strong> {{ task.published_date }} </p>
+      <div class="task-container">
+        <strong>{{ task.content }}</strong>
+        {% if task.is_completed %}
+          <span class="text-success">Done</span>
+          <form action="{% url 'todoapp:task-status' pk=task.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button class="btn btn-secondary float-right" type="submit">Undo</button>
+          </form>
+        {% else %}
+          <span class="text-danger">Not done</span>
+          <form action="{% url 'todoapp:task-status' pk=task.id %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button class="btn btn-success float-right" type="submit">Complete</button>
+          </form>
+        {% endif %}
+      </div>
+      <p><strong>Created:</strong> {{ task.datetime }} </p>
       <div class="text-muted"><strong>Tags:</strong>
         {% for tag in task.tags.all %}
         <span>{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
