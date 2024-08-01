@@ -1,25 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>TODO List</h1>
+    <h1>TODO List
+      <a href="{% url "todoapp:task-create" %}" class="btn btn-primary link-to-page">
+      Add task
+      </a>
+    </h1>
     <ul>
         <li><strong>Tasks:</strong> {{ num_tasks }}</li>
         <li><strong>Tags:</strong> {{ num_tags }}</li>
     </ul>
     <div class="ml">
-       {% for task in tasks %}
-
-          <p><strong> {{ task.content }} </strong></p>
-          <p><strong>Created:</strong> {{ task.published_date }} </p>
-          <div class="text-muted"><strong>Tags:</strong>
-              {% for tag in task.tags.all %}
-              <span>{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
-              {% endfor %}
-          </div>
-          <hr>
-       {% empty %}
-          <p>No TODO List!</p>
-       {% endfor %}
-    </div>  
-
+         {% for task in tasks %}
+  
+      <p><strong> {{ task.content }} </strong></p>
+      <p><strong>Created:</strong> {{ task.published_date }} </p>
+      <div class="text-muted"><strong>Tags:</strong>
+        {% for tag in task.tags.all %}
+        <span>{{ tag.name }}</span>{% if not forloop.last %}, {% endif %}
+        <a href="{% url 'todoapp:task-update' pk=task.id %}">Update</a>
+        <a href="{% url 'todoapp:task-delete' pk=task.id %}">Delete</a>
+        {% endfor %}
+      </div>
+      <hr>
+      {% empty %}
+      <p>No TODO List!</p>
+      {% endfor %}
+    </div>
 {% endblock content %}
