@@ -38,7 +38,7 @@
       "content": "Clean windows",
       "datetime": "2024-08-02T12:00:00Z",
       "deadline": "2024-08-05T14:00:00Z",
-      "is_done": false,
+      "is_done": true,
       "tags": [1]
     }
   },
